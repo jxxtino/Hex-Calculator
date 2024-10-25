@@ -1,11 +1,20 @@
-
 class Multiplication():
 
-    def hex_to_int(self,hex_value):
+    def hex_to_int(self, hex_value):
+        # verifica primeiro o intervalo qual o caractere pertence 
         if "0" <= hex_value <= "9":
-            return (ord(hex_value) - ord("0"))
+            # ord( ) retorna o UNICODE INT de um caractere | ord("0") é a referência
+            return ord(hex_value) - ord("0")
         elif "A" <= hex_value <= "F":
-            return ((ord(hex_value) - ord("A")) + (ord("K") - ord("A")))
+            return ord(hex_value) - ord("A") + 10
+
+    def int_to_hex(self, int_value):
+        # verificando o intervalo pertencente
+        if 0 <= int_value <= 9:
+            # chr( ) transforma o UNICODE INT em um UNICODE CHAR | ord("0") é a referência
+            return chr(ord("0") + int_value)
+        elif 10 <= int_value <= 15:
+            return chr(ord("A") + int_value - 10)
 
     def multiply_hex(self, first_hex_value, second_hex_value):
         first_hex_value = first_hex_value.upper()
@@ -32,6 +41,17 @@ class Multiplication():
                 # adicionando o produto em sua respectiva posicao
                 result[position] += multiply_product
 
+                # passando o resultado da divisao inteira do valor para o proximo 
+                result[position + 1] += result[position] // 16
+            
+                # atualizando o resultado da multiplicacao inicial para o resto de sua divisao  
+                result[position] %= 16
+            
+        # convertendo os valores de inteiros para hexadecimais, e removendo os zeros iniciais
+        result = "".join(self.int_to_hex(x) for x in reversed(result)).lstrip("0")
+        
+        # retornando o resultado
+        return result
 
     
 Multiplication = Multiplication()
