@@ -20,5 +20,10 @@ class Controllers:
         else:
             return None
 
+    def check_hex_values(self, first_hex_value, second_hex_value):
+        if not(first_hex_value) or not(second_hex_value):
+            raise Exception("\nValores Hexadecimais em Branco\n")
+        elif not all(char in "0123456789ABCDEF" for char in (first_hex_value+second_hex_value)):
+            raise Exception("\nValores Hexadecimais Inválidos\n")
 
 Controllers = Controllers()
