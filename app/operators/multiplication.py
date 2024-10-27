@@ -1,20 +1,6 @@
+from controllers.controllers import Controllers
+
 class Multiplication():
-
-    def hex_to_int(self, hex_value):
-        # verifica primeiro o intervalo qual o caractere pertence 
-        if "0" <= hex_value <= "9":
-            # ord( ) retorna o UNICODE INT de um caractere | ord("0") é a referência
-            return ord(hex_value) - ord("0")
-        elif "A" <= hex_value <= "F":
-            return ord(hex_value) - ord("A") + 10
-
-    def int_to_hex(self, int_value):
-        # verificando o intervalo pertencente
-        if 0 <= int_value <= 9:
-            # chr( ) transforma o UNICODE INT em um UNICODE CHAR | ord("0") é a referência
-            return chr(ord("0") + int_value)
-        elif 10 <= int_value <= 15:
-            return chr(ord("A") + int_value - 10)
 
     def multiply_hex(self, first_hex_value, second_hex_value):
         first_hex_value = first_hex_value.upper()
@@ -29,8 +15,8 @@ class Multiplication():
             for index_second, char_2 in enumerate(reversed(second_hex_value)):
 
                 # convertendo cada valor para seu inteiro
-                int_char_1 = self.hex_to_int(char_1)
-                int_char_2 = self.hex_to_int(char_2)
+                int_char_1 = Controllers.hex_to_int(char_1)
+                int_char_2 = Controllers.hex_to_int(char_2)
 
                 # multiplicacao simples de cada valor
                 multiply_product = int_char_1 * int_char_2
@@ -48,9 +34,10 @@ class Multiplication():
                 result[position] %= 16
             
         # convertendo os valores de inteiros para hexadecimais, e removendo os zeros iniciais
-        result = "".join(self.int_to_hex(x) for x in reversed(result)).lstrip("0")
+        result = "".join(Controllers.int_to_hex(char) for char in reversed(result)).lstrip("0")
         
         # retornando o resultado
+        print(result)
         return result
 
     
