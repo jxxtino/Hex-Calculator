@@ -3,8 +3,6 @@ from controllers.controllers import Controllers
 class Addition:
         
     def sum_hex(self, first_hex_value, second_hex_value):
-        first_hex_value = first_hex_value.upper()
-        second_hex_value = second_hex_value.upper()
         
         # gerando lista de zeros com a soma dos tamanhos dos valores
         result = [0] * (len(first_hex_value) + len(second_hex_value))
