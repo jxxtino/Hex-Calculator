@@ -21,8 +21,11 @@ class Controllers:
             return None
 
     def check_hex_values(self, first_hex_value, second_hex_value):
+        # verificando se existe valores hexadecimais vazios
         if not(first_hex_value) or not(second_hex_value):
             raise Exception("\nValores Hexadecimais em Branco\n")
+        
+        # verificando se os valores inseridos estão dentro do padrão hexadecimal
         elif not all(char in "0123456789ABCDEF" for char in (first_hex_value+second_hex_value)):
             raise Exception("\nValores Hexadecimais Inválidos\n")
 
